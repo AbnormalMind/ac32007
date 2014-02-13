@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>Page title</title>
+	
+<script type="text/javascript" language="javascript">
+var i=0;
+    function makeRequest() {
+        var http_request = false;
+
+        if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+            http_request = new XMLHttpRequest();
+            if (http_request.overrideMimeType) {
+                http_request.overrideMimeType('text/xml');
+                // See note below about this line
+            }
+        } else if (window.ActiveXObject) { // IE
+            try {
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {}
+            }
+        }
+
+        if (!http_request) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+        http_request.onreadystatechange = function() { alertContents(http_request); };
+				
+        http_request.open('GET', 'count2.jsp?name='+Math.random(), true);
+				//alert('Sent');
+		    http_request.send(null);
+				
+
+    }
+
+    function alertContents(http_request) {
+
+        if (http_request.readyState == 4) {
+            if (http_request.status == 200) {
+            //alert(http_request.responseText);
+						//document.write (http_request.responseText);
+						//document.write (i);
+						document.getElementById('Clock').innerHTML = '';
+						parseCode(http_request.responseText);
+						i++;
+            } else {
+                alert('There was a problem with the request.');
+            }
+        }
+
+    }
+		function parseCode(obj)
+        {
+             obj = obj.replace(/\n/g,"<br />");
+             obj = obj.replace(/\t/g,"<span style=padding-left:30px></span>");
+             obj = obj.replace(/int /g,"<span style=color:#ff6666>int </span>");
+             obj = obj.replace(/String /g,"<span style=color:#ff6666>String </span>");
+             obj = obj.replace(/float /g,"<span style=color:#ff6666>float </span>");
+             obj = obj.replace(/double /g,"<span style=color:#ff6666>double </span>");
+             obj = obj.replace(/ if/g,"<span style=color:#3333ff> if</span>");
+             obj = obj.replace(/else/g,"<span style=color:#3333ff>else </span>");
+            document.getElementById('Clock').innerHTML = obj;
+        }
+		
+		function Start(){
+		//alert('Start');
+			var interval=1000; 
+			//alert(interval);
+		 this.setInterval(this.makeRequest,interval);
+		}
+		
+</script>
+
+</head>
+<body>
+
+<span
+    style="cursor: pointer; text-decoration: underline"
+    onclick="Start()">
+        Make a request
+</span>
+
+<div id="Clock">
+   </div>
+ 
+
+</body>
+</html>
