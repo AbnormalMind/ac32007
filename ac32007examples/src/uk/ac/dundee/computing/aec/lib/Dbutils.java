@@ -41,7 +41,7 @@ public class Dbutils {
 	 public DataSource assemble(ServletConfig config) throws ServletException {
 		DataSource _ds = null;
 		String dataSourceName = config.getInitParameter("data-source");
-		System.out.println("Data Source Parameter" + dataSourceName);
+		System.out.println("Data Source Parameter " + dataSourceName);
 		if (dataSourceName == null)
 			throw new ServletException("data-source must be specified");
 		Context envContext = null;
