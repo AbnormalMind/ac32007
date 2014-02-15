@@ -3,7 +3,7 @@
 
 <jsp:useBean
 	id="Author"
-	scope="session"
+	scope="request"
 	class="uk.ac.dundee.computing.aec.stores.AuthorStore" />
 
 <p>Author is  <%=Author.getname()%>
@@ -13,7 +13,7 @@
 
 
 
-<%--
+
 </p>
 <h2>List of Authors</h2>
 <%

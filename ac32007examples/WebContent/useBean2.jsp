@@ -8,10 +8,10 @@
 </head>
 <body>
 
-<p>bean is page</p>
+<p>bean is session</p>
 <jsp:useBean
 	id="myBean"
-	scope="page"
+	scope="application"
 	class="uk.ac.dundee.computing.aec.stores.testbean.aBean2" />
 <p>The counter at the start is :	
 <jsp:getProperty
