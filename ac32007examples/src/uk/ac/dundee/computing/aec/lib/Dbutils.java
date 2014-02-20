@@ -187,6 +187,7 @@ public class Dbutils {
 		try{
 			java.sql.Statement statement=conn.createStatement();
 			statement.execute(sqlcreateSchema);
+			conn.close();
 		}catch (Exception et){
 			System.out.println("Can not create schema ");
 			return;
