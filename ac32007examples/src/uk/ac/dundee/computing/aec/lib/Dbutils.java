@@ -1,6 +1,7 @@
 package uk.ac.dundee.computing.aec.lib;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -12,6 +13,8 @@ import javax.naming.NamingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.sql.DataSource;
+
+import com.mysql.jdbc.Statement;
 
 
 
@@ -166,6 +169,28 @@ public class Dbutils {
 		
 	
  
+		
+	}
+	
+	public void createSchema(){
+		String url = "jdbc:mysql://localhost";
+		Connection conn=null;
+		try {
+		   Class.forName ("com.mysql.jdbc.Driver").newInstance ();
+		   conn = DriverManager.getConnection (url, "root", "Cl1m8t3;");
+	
+		}catch (Exception et){
+			System.out.println("Can't get conenction to create schema "+et);
+			return;
+		}
+		String sqlcreateSchema="Create database if not exists faultdb ;";
+		try{
+			java.sql.Statement statement=conn.createStatement();
+			statement.execute(sqlcreateSchema);
+		}catch (Exception et){
+			System.out.println("Can not create schema ");
+			return;
+		}
 		
 	}
 }

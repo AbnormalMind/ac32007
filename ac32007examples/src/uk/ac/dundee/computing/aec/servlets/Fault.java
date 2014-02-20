@@ -48,6 +48,8 @@ public class Fault extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		Dbutils db = new Dbutils();
+		db.createSchema();
+	
         _ds=db.assemble(config);
 	}
 
