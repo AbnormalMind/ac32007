@@ -20,7 +20,7 @@ import uk.ac.dundee.computing.aec.stores.*;
 /**
  * Servlet implementation class Tweet
  */
-@WebServlet({ "/Tweet", "/Tweet/*" })
+@WebServlet(urlPatterns = { "/Tweet", "/Tweet/*" })
 public class Tweet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private Cluster cluster;
