@@ -8,7 +8,7 @@
 </head>
 <body>
 <%! int counter=0;%>
-<% counter = counter+1; %>
+<% counter = counter+2; %>
 <h1>Your count is :<i> <%=counter%></h1>
 
 </body>
